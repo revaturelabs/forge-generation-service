@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
-	//primaryKey
-	private String email;
-	
-	private String first_name;
-	private String last_name;
+public class AboutMe {
+	//PK
+	private int id;
+	private String description;
 }
