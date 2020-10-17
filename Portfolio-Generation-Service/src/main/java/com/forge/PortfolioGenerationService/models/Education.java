@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 public class Education {
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "education_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
@@ -41,8 +41,8 @@ public class Education {
 	@Column(name = "minor")
 	private String minor; 
 	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id")
-//	private Portfolio portfolio;
+	@ManyToOne
+	@JoinColumn(name="portfolio_id", nullable=false)
+	private Portfolio portfolio;
 	
 }

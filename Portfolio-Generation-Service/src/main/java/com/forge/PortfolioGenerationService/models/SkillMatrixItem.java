@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class SkillMatrixItem {
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "skill_matrix_item_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
@@ -28,4 +30,8 @@ public class SkillMatrixItem {
 	
 	@Column(name = "experience")
 	private String experience;
+	
+	@ManyToOne
+	@JoinColumn(name="skill_matrix_id", nullable=false)
+	private SkillMatrix skillMatrix;
 }
