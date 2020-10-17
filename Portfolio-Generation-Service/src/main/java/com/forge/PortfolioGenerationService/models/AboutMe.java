@@ -21,6 +21,6 @@ public class AboutMe {
 	private int id;
 	private String description;
 	
-	@OneToOne(mappedBy = "portfolio")
-	private Portfolio portfolio;
+//	@OneToOne(mappedBy = "portfolio")
+//	private Portfolio portfolio;
 }

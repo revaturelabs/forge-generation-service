@@ -41,8 +41,8 @@ public class Education {
 	@Column(name = "minor")
 	private String minor; 
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
-	private Portfolio portfolio;
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "id")
+//	private Portfolio portfolio;
 	
 }

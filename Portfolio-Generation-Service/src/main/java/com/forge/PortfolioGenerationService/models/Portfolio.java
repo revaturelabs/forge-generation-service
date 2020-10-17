@@ -36,14 +36,14 @@ public class Portfolio {
 	@Column(name = "status", nullable = false)
 	private String status;
 	
-	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User user;
-	
-	@OneToMany(mappedBy = "portfolio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Education> education;
-	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "aboutMe_id", referencedColumnName = "id")
-	private AboutMe aboutMe;
+//	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "user_id")
+//	private User user;
+
+//	@OneToMany(mappedBy = "portfolio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	private Set<Education> education;
+
+//	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "aboutMe_id", referencedColumnName = "id")
+//	private AboutMe aboutMe;
 }
