@@ -38,8 +38,8 @@ public class Project {
 	@JoinColumn(name="portfolio_id", nullable=false)
 	private Portfolio portfolio;
 	
-//	@OneToMany(mappedBy = "project")
-//	private Set<ProjectResponsibilities> projectResponsibilities;
+	@OneToMany(mappedBy = "project")
+	private Set<ProjectResponsibilities> projectResponsibilities;
 	
 	@OneToMany(mappedBy = "project")
 	private Set<ProjectTechnologies> projectTechnologies;
