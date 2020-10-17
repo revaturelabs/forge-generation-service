@@ -16,10 +16,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor 
 @Entity
+<<<<<<< HEAD
 @Table(name = "User_Table")
+=======
+@Table(name = "users")
+>>>>>>> 78e4e31e13220c0b7d5bf75b15b32f6910355ac0
 public class User {
-	
+
 	@Id
+<<<<<<< HEAD
 	@Column(name = "User_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int UserId;
@@ -44,4 +49,12 @@ public class User {
 	
 	
 
+=======
+	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@Column(name = "name")
+	private String name;
+>>>>>>> 78e4e31e13220c0b7d5bf75b15b32f6910355ac0
 }
