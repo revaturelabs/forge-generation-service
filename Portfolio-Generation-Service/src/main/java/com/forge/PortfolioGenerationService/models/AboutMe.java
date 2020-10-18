@@ -23,7 +23,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "About_Me_Table")
 public class AboutMe {
-	
+	//i know these are pretty basic beans but should probably still leave some comments for the folks coming after us
+	//RC 1239 18Oct2020
 	@Id
 	@Column(name = "about_me_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
