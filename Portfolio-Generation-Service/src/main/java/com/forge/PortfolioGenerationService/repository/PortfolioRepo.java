@@ -10,13 +10,10 @@ import com.forge.PortfolioGenerationService.models.Portfolio;
 @Repository
 public interface PortfolioRepo extends CrudRepository<Portfolio, Integer>{
 
-	public Portfolio createPortfolio(Portfolio portfolio);
+	public Portfolio save(Portfolio portfolio);
+
+	public List<Portfolio> findAll();
 	
-	public List<Portfolio> findAllPortfolios();
-	
-	public Portfolio findByPortfolioId(int id);
-	
-	public void updatePortfolio(Portfolio portfolio);
-	
-	public void deletePortfolio(Portfolio portfolio);
+	public Portfolio findById(int id);
+
 }

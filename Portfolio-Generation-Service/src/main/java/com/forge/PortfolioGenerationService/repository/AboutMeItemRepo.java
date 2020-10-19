@@ -10,13 +10,10 @@ import com.forge.PortfolioGenerationService.models.AboutMeItem;
 @Repository
 public interface AboutMeItemRepo extends CrudRepository<AboutMeItem, Integer>{
 
-	public AboutMeItem createAboutMeItem(AboutMeItem aboutMeItem);
+	public AboutMeItem save(AboutMeItem aboutMeItem);
 	
-	public List<AboutMeItem> findAllAboutMeItem();
+	public List<AboutMeItem> findAll();
 	
-	public AboutMeItem findByAboutMeItemId(int id);
-	
-	public void updateAboutMeItem(AboutMeItem aboutMeItem);
-	
-	public void deleteAboutMeItem(AboutMeItem aboutMeItem);
+	public AboutMeItem findById(int id);
+
 }

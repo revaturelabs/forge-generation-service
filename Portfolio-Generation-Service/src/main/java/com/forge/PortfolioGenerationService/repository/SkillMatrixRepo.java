@@ -10,13 +10,10 @@ import com.forge.PortfolioGenerationService.models.SkillMatrix;
 @Repository
 public interface SkillMatrixRepo extends CrudRepository<SkillMatrix, Integer>{
 
-	public SkillMatrix createSkillMatrix(SkillMatrix skillMatrix);
+	public SkillMatrix save(SkillMatrix skillMatrix);
 	
-	public List<SkillMatrix> findAllSkillMatrix();
+	public List<SkillMatrix> findAll();
 	
-	public SkillMatrix findBySkillMatrixId(int id);
-	
-	public void updateSkillMatrix(SkillMatrix skillMatrix);
-	
-	public void deleteSkillMatrix(SkillMatrix skillMatrix);
+	public SkillMatrix findById(int id);
+
 }

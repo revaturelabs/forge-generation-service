@@ -30,7 +30,7 @@ public class Portfolio {
 	private int id;
 	
 	@Column(name = "belongs_to", nullable = false)
-	private String belongs_to;
+	private String belongsTo;
 	
 	@Column(name = "status", nullable = false)
 	private String status;

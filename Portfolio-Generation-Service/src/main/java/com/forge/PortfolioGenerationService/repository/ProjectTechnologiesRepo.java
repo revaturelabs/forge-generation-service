@@ -10,13 +10,10 @@ import com.forge.PortfolioGenerationService.models.ProjectTechnologies;
 @Repository
 public interface ProjectTechnologiesRepo extends CrudRepository<ProjectTechnologies, Integer>{
 
-	public ProjectTechnologies createProjectTechnologies(ProjectTechnologies projectTechnologies);
+	public ProjectTechnologies save(ProjectTechnologies projectTechnologies);
 	
-	public List<ProjectTechnologies> findAllProjectTechnologies();
+	public List<ProjectTechnologies> findAll();
 	
-	public ProjectTechnologies findByProjectTechnologiesId(int id);
-	
-	public void updateProjectTechnologies(ProjectTechnologies projectTechnologies);
-	
-	public void deleteProjectTechnologies(ProjectTechnologies projectTechnologies);
+	public ProjectTechnologies findById(int id);
+
 }

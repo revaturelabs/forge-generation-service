@@ -11,15 +11,12 @@ import com.forge.PortfolioGenerationService.models.Project;
 public interface ProjectRepo extends CrudRepository<Project, Integer>{
 
 	
-	public Project createProject(Project project);
+	public Project save(Project project);
 	
-	public List<Project> findAllProjects();
+	public List<Project> findAll();
 	
-	public Project findByProjectId(int id);
-	
-	public void updateProject(Project project);
-	
-	public void deleteProject(Project project);
+	public Project findById(int id);
+
 	
 	
 }
