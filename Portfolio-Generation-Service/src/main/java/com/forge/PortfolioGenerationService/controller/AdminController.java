@@ -1,5 +1,6 @@
 package com.forge.PortfolioGenerationService.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,21 @@ public class AdminController {
 
 	@GetMapping("/getAllPortfolios")
 	public @ResponseBody List<Portfolio> getPortfolios(){
-		return portfolioRepo.findAll();
+		List<Portfolio> myList = portfolioRepo.findAll();
+		return myList;
+	}
+	
+	
+	@GetMapping("/getPortfoliosByStatus")
+	public @ResponseBody List<Portfolio> getPortfoliosByStatus(String status){
+		List<Portfolio> myList = portfolioRepo.findByStatus(status);
+		return myList;
 	}
 	
 	@GetMapping("/getAllUsers")
 	public @ResponseBody List<User> getUsers(){
 		return userRepo.findAll();
 	}
+	
+	
 }

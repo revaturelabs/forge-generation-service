@@ -15,5 +15,7 @@ public interface PortfolioRepo extends CrudRepository<Portfolio, Integer>{
 	public List<Portfolio> findAll();
 	
 	public Portfolio findById(int id);
+	
+	public List<Portfolio> findByStatus(String status);
 
 }

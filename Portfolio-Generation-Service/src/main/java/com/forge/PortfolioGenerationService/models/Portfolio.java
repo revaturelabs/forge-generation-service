@@ -46,12 +46,15 @@ public class Portfolio {
 	private User myUser;
 
 	@OneToMany(mappedBy = "portfolio")
+	@JsonBackReference
 	private Set<Project> projects;
 	
 	@OneToMany(mappedBy = "portfolio")
+	@JsonBackReference
 	private Set<Education> education;
 	
 	@OneToMany(mappedBy = "portfolio")
+	@JsonBackReference
 	private Set<SkillMatrix> skillMatrix;
 	
 
