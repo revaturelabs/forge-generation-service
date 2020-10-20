@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.forge.PortfolioGenerationService.models.Portfolio;
+import com.forge.PortfolioGenerationService.models.User;
 import com.forge.PortfolioGenerationService.repository.PortfolioRepo;
+import com.forge.PortfolioGenerationService.repository.UserRepo;
 
 @RestController
 @RequestMapping("/admin")
@@ -20,9 +22,17 @@ public class AdminController {
 	
 	@Autowired
 	private PortfolioRepo portfolioRepo;
+	
+	@Autowired
+	private UserRepo userRepo;
 
 	@GetMapping("/getAllPortfolios")
 	public @ResponseBody List<Portfolio> getPortfolios(){
 		return portfolioRepo.findAll();
+	}
+	
+	@GetMapping("/getAllUsers")
+	public @ResponseBody List<User> getUsers(){
+		return userRepo.findAll();
 	}
 }
