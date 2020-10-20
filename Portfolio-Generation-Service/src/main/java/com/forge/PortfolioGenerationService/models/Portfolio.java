@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,6 +42,7 @@ public class Portfolio {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=false)
+	@JsonBackReference
 	private User myUser;
 
 	@OneToMany(mappedBy = "portfolio")
