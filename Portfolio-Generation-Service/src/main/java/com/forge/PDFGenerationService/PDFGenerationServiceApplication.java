@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-public class PortfolioGenerationServiceApplication {
+public class PDFGenerationServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PortfolioGenerationServiceApplication.class, args);
+		SpringApplication.run(PDFGenerationServiceApplication.class, args);
 	}
 
 }
