@@ -10,14 +10,10 @@ import com.forge.PortfolioGenerationService.models.SkillMatrixItem;
 @Repository
 public interface SkillMatrixItemRepo extends CrudRepository<SkillMatrixItem, Integer>{
 
-	public SkillMatrixItem createSkillMatrixItem(SkillMatrixItem skillMatrixItem);
+	public SkillMatrixItem save(SkillMatrixItem skillMatrixItem);
 	
-	public List<SkillMatrixItem> findAllSkillMatrixItem();
+	public List<SkillMatrixItem> findAll();
 	
-	public SkillMatrixItem findBySkillMatrixItemId(int id);
-	
-	public void updateSkillMatrixItem(SkillMatrixItem skillMatrixItem);
-	
-	public void deleteSkillMatrixItem(SkillMatrixItem skillMatrixItem);
+	public SkillMatrixItem findById(int id);
 	
 }

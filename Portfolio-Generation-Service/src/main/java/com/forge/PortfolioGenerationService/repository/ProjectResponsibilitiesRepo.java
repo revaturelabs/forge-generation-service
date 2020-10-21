@@ -10,13 +10,10 @@ import com.forge.PortfolioGenerationService.models.ProjectResponsibilities;
 @Repository
 public interface ProjectResponsibilitiesRepo extends CrudRepository<ProjectResponsibilities, Integer>{
 
-	public ProjectResponsibilities createProjectResponsibilities(ProjectResponsibilities projectResponsibilities);
+	public ProjectResponsibilities save(ProjectResponsibilities projectResponsibilities);
 	
-	public List<ProjectResponsibilities> findAllProjectResponsibilities();
+	public List<ProjectResponsibilities> findAll();
 	
-	public ProjectResponsibilities findByProjectResponsibilitiesId(int id);
-	
-	public void updateProjectResponsibilities(ProjectResponsibilities projectResponsibilities);
-	
-	public void deleteProjectResponsibilities(ProjectResponsibilities projectResponsibilities);
+	public ProjectResponsibilities findById(int id);
+
 }

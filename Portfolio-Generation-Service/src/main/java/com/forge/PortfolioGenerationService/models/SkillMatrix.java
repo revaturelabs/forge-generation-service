@@ -12,8 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -21,6 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "skill_matrix")
+@EqualsAndHashCode(exclude = {"skillMatrixItem"})
 public class SkillMatrix {
 
 	@Id
@@ -32,9 +36,15 @@ public class SkillMatrix {
 	private String title;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="portfolio_id", nullable=false)
 	private Portfolio portfolio;
 	
 	@OneToMany(mappedBy = "skillMatrix")
 	private Set<SkillMatrixItem> skillMatrixItem;
+	
+	@Override
+	public String toString() {
+		return "SkillMatrix [id=" + id + ", title=" + title + ", skillMatrixItem=" + skillMatrixItem + "]";
+	}
 }

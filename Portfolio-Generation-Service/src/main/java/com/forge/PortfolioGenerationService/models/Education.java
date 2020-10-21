@@ -2,7 +2,6 @@ package com.forge.PortfolioGenerationService.models;
 
 import java.util.Date;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,15 +11,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "education")
+@EqualsAndHashCode(exclude = {"portfolio"})
 public class Education {
 
 	@Id
@@ -38,10 +42,19 @@ public class Education {
 	private String major;
 	
 	@Column(name = "minor")
-	private String minor; 
+	private String minor;
+	
+	@Column(name = "degree")
+	private String degree;
 	
 	@ManyToOne
 	@JoinColumn(name="portfolio_id", nullable=false)
+	@JsonBackReference
 	private Portfolio portfolio;
 	
+	@Override
+	public String toString() {
+		return "Education [id=" + id + ", university=" + university + ", graduation=" + graduation + ", major=" + major
+				+ ", minor=" + minor + "]";
+	}
 }

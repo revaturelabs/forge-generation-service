@@ -13,8 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -22,9 +25,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "About_Me_Table")
+@EqualsAndHashCode(exclude = {"portfolio", "aboutMeItems"})
 public class AboutMe {
-	//i know these are pretty basic beans but should probably still leave some comments for the folks coming after us
-	//RC 1239 18Oct2020
+	
 	@Id
 	@Column(name = "about_me_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,8 +39,14 @@ public class AboutMe {
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "portfolio_id")
+	@JsonBackReference
     private Portfolio portfolio;
 	
 	@OneToMany(mappedBy = "aboutMe")
 	private Set<AboutMeItem> aboutMeItems;
+	
+	@Override
+	public String toString() {
+		return "AboutMe [id=" + id + ", description=" + description + ", aboutMeItems=" + aboutMeItems + "]";
+	}
 }

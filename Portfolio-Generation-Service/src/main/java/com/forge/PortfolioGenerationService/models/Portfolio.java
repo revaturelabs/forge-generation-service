@@ -13,8 +13,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -22,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "portfolio")
+@EqualsAndHashCode(exclude = {"projects", "education", "skillMatrix", "industryEquivalency"})
 public class Portfolio {
  
 	@Id
@@ -30,26 +35,37 @@ public class Portfolio {
 	private int id;
 	
 	@Column(name = "belongs_to", nullable = false)
-	private String belongs_to;
+	private String belongsTo;
 	
 	@Column(name = "status", nullable = false)
 	private String status;
 	
 	@OneToOne(mappedBy = "portfolio")
     private AboutMe aboutMe;
-	
+
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=false)
+	@JsonBackReference
 	private User myUser;
 
 	@OneToMany(mappedBy = "portfolio")
+	@JsonManagedReference
 	private Set<Project> projects;
 	
 	@OneToMany(mappedBy = "portfolio")
+	@JsonManagedReference
 	private Set<Education> education;
 	
 	@OneToMany(mappedBy = "portfolio")
+	@JsonManagedReference
 	private Set<SkillMatrix> skillMatrix;
 	
+	@OneToMany(mappedBy = "portfolio")
+	@JsonManagedReference
+	private Set<IndustryEquivalency> industryEquivalency;
 
+	@Override
+	public String toString() {
+		return "Portfolio [id=" + id + ", belongs_to=" + belongsTo + ", status=" + status + "]";
+	}
 }

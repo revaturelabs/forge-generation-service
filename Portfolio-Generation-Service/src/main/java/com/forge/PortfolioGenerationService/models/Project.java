@@ -12,8 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -21,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "project")
+@EqualsAndHashCode(exclude = {"projectResponsibilities", "projectTechnologies"})
 public class Project {
 
 	@Id
@@ -36,11 +41,14 @@ public class Project {
 	
 	@ManyToOne
 	@JoinColumn(name="portfolio_id", nullable=false)
+	@JsonBackReference
 	private Portfolio portfolio;
 	
 	@OneToMany(mappedBy = "project")
+	@JsonManagedReference
 	private Set<ProjectResponsibilities> projectResponsibilities;
 	
 	@OneToMany(mappedBy = "project")
+	@JsonManagedReference
 	private Set<ProjectTechnologies> projectTechnologies;
 }

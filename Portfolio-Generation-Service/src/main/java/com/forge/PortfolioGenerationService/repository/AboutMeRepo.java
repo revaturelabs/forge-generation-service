@@ -8,15 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.forge.PortfolioGenerationService.models.AboutMe;
 
 @Repository
-public interface AboutMeRepo extends CrudRepository<AboutMeRepo, Integer>{
+public interface AboutMeRepo extends CrudRepository<AboutMe, Integer>{
 
-	public AboutMe createAboutMe(AboutMe aboutMe);
+	public AboutMe save(AboutMe aboutMe);
 	
-	public List<AboutMe> findAllAboutMe();
+	public List<AboutMe> findAll();
 	
-	public AboutMe findByAboutMeId(int id);
-	
-	public void updateAboutMe(AboutMe aboutMe);
-	
-	public void deleteAboutMe(AboutMe aboutMe);
+	public AboutMe findById(int id);
+
 }

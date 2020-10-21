@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,5 +32,11 @@ public class ProjectResponsibilities {
 	
 	@ManyToOne
 	@JoinColumn(name="project_id", nullable=false)
+	@JsonBackReference
 	private Project project;
+	
+	@Override
+	public String toString() {
+		return "ProjectResponsibilities [id=" + id + ", content=" + content + "]";
+	}
 }

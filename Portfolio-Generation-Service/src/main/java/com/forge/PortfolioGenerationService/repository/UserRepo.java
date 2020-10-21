@@ -10,17 +10,16 @@ import com.forge.PortfolioGenerationService.models.User;
 @Repository
 public interface UserRepo extends CrudRepository<User, Integer>{
 	
-	public User createUser(User user);
+	public User save(User user);
 	
-	public List<User> findAllUsers();
+	public List<User> findAll();
 	
 	public User findByUserId(int id);
 	
-	public User findByUserFirstName(String firstName);
+	public User findByFirstName(String firstName);
 	
-	public User findByUsername(String username);
+	public User findByEmail(String username);
 	
-	public void updateUser(User user);
+	public void delete(User user);
 	
-	public void deleteUser(User user);
 }

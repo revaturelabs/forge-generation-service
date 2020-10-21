@@ -8,8 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -17,6 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "project_technologies")
+@EqualsAndHashCode(exclude = "project")
 public class ProjectTechnologies {
 
 	@Id
@@ -29,5 +34,11 @@ public class ProjectTechnologies {
 	
 	@ManyToOne
 	@JoinColumn(name="project_id", nullable=false)
+	@JsonBackReference
 	private Project project;
+	
+	@Override
+	public String toString() {
+		return "ProjectTechnologies [id=" + id + ", name=" + name + "]";
+	}
 }

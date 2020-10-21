@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "skill_matrix_item")
+//@EqualsAndHashCode(exclude = {"skillMatrixItems"})
 public class SkillMatrixItem {
 
 	@Id
@@ -33,5 +36,11 @@ public class SkillMatrixItem {
 	
 	@ManyToOne
 	@JoinColumn(name="skill_matrix_id", nullable=false)
+	@JsonBackReference
 	private SkillMatrix skillMatrix;
+	
+	@Override
+	public String toString() {
+		return "SkillMatrixItem [id=" + id + ", name=" + name + ", experience=" + experience + "]";
+	}
 }

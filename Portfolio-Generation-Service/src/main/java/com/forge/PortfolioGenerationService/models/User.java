@@ -10,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
@@ -20,12 +23,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 @Entity
 @Table(name = "User_Table")
+@EqualsAndHashCode(exclude = "portfolios")
 public class User {
 
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int UserId;
+	private int userId;
 	
 	@Column(name = "email")
 	private String email;
@@ -34,13 +38,14 @@ public class User {
 	private String password;
 	
 	@Column(name = "first_name", nullable = false)
-	private String first_name;
+	private String firstName;
 	
 	@Column(name = "last_name", nullable = false)
-	private String last_name;
+	private String lastName;
 	
 	
 	@OneToMany(mappedBy = "myUser")
+	@JsonManagedReference
 	private Set<Portfolio> portfolios;
 	
 	
