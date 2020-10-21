@@ -1,4 +1,4 @@
-package com.forge.PortfolioGenerationService.models;
+package com.forge.PDFGenerationService.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

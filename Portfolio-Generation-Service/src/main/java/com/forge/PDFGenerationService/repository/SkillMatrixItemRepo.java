@@ -1,11 +1,11 @@
-package com.forge.PortfolioGenerationService.repository;
+package com.forge.PDFGenerationService.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.forge.PortfolioGenerationService.models.SkillMatrixItem;
+import com.forge.PDFGenerationService.models.SkillMatrixItem;
 
 @Repository
 public interface SkillMatrixItemRepo extends CrudRepository<SkillMatrixItem, Integer>{
