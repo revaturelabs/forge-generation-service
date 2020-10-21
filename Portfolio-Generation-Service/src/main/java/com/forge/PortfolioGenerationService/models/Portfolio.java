@@ -14,9 +14,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "portfolio")
+@EqualsAndHashCode(exclude = {"projects", "education", "skillMatrix"})
 public class Portfolio {
  
 	@Id
@@ -38,6 +41,7 @@ public class Portfolio {
 	private String status;
 	
 	@OneToOne(mappedBy = "portfolio")
+	@JsonManagedReference
     private AboutMe aboutMe;
 	
 	@ManyToOne
@@ -46,15 +50,15 @@ public class Portfolio {
 	private User myUser;
 
 	@OneToMany(mappedBy = "portfolio")
-	@JsonBackReference
+	@JsonManagedReference
 	private Set<Project> projects;
 	
 	@OneToMany(mappedBy = "portfolio")
-	@JsonBackReference
+	@JsonManagedReference
 	private Set<Education> education;
 	
 	@OneToMany(mappedBy = "portfolio")
-	@JsonBackReference
+	@JsonManagedReference
 	private Set<SkillMatrix> skillMatrix;
 	
 

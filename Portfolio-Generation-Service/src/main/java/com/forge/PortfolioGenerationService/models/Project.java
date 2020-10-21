@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,8 +43,10 @@ public class Project {
 	private Portfolio portfolio;
 	
 	@OneToMany(mappedBy = "project")
+	@JsonManagedReference
 	private Set<ProjectResponsibilities> projectResponsibilities;
 	
 	@OneToMany(mappedBy = "project")
+	@JsonManagedReference
 	private Set<ProjectTechnologies> projectTechnologies;
 }

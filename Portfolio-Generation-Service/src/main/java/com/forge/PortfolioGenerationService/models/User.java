@@ -10,10 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
@@ -22,6 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 @Entity
 @Table(name = "User_Table")
+@EqualsAndHashCode(exclude = {"portfolios"})
 public class User {
 
 	@Id
@@ -43,7 +45,7 @@ public class User {
 	
 	
 	@OneToMany(mappedBy = "myUser")
-	@JsonBackReference
+	@JsonManagedReference
 	private Set<Portfolio> portfolios;
 	
 	

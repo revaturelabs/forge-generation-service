@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,5 +38,6 @@ public class SkillMatrix {
 	private Portfolio portfolio;
 	
 	@OneToMany(mappedBy = "skillMatrix")
+	@JsonManagedReference
 	private Set<SkillMatrixItem> skillMatrixItem;
 }

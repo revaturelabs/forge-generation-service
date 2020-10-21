@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "about_me_item")
-//@EqualsAndHashCode(exclude = {"aboutMeItems"})
+@EqualsAndHashCode(exclude = {"aboutMe"})
 public class AboutMeItem {
 
 	@Id
