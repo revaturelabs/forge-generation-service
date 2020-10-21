@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "about_me_item")
+//@EqualsAndHashCode(exclude = {"aboutMeItems"})
 public class AboutMeItem {
 
 	@Id
@@ -30,5 +33,6 @@ public class AboutMeItem {
 	
 	@ManyToOne
 	@JoinColumn(name="about_me_id", nullable=false)
+	@JsonBackReference
 	private AboutMe aboutMe;
 }

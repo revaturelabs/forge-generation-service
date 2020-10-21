@@ -2,8 +2,6 @@ package com.forge.PortfolioGenerationService.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,19 +17,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "project_technologies")
-public class ProjectTechnologies {
+@Table(name = "industry_equivalency")
+public class IndustryEquivalency {
 
 	@Id
-	@Column(name = "project_technologies_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "industry_equivalency_id")
 	private int id;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "months", nullable = false)
+	private int months;
+	
+	@Column(name = "technology", nullable = false)
+	private String technology;
 	
 	@ManyToOne
-	@JoinColumn(name="project_id", nullable=false)
+	@JoinColumn(name="portfolio_id", nullable=false)
 	@JsonBackReference
-	private Project project;
+	private Portfolio portfolio;
+	
+	
 }

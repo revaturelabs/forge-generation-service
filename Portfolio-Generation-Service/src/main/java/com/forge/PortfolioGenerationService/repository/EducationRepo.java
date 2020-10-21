@@ -10,13 +10,10 @@ import com.forge.PortfolioGenerationService.models.Education;
 @Repository
 public interface EducationRepo extends CrudRepository<Education, Integer>{
 
-	public Education createEducation(Education education);
+	public Education save(Education education);
 	
-	public List<Education> findAllEducation();
+	public List<Education> findAll();
 	
-	public Education findByEducationId(int id);
-	
-	public void updateEducation(Education education);
-	
-	public void deleteEducation(Education education);
+	public Education findById(int id);
+
 }

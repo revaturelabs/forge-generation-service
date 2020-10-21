@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "education")
+//@EqualsAndHashCode(exclude = {"education"})
 public class Education {
 
 	@Id
@@ -38,10 +41,14 @@ public class Education {
 	private String major;
 	
 	@Column(name = "minor")
-	private String minor; 
+	private String minor;
+	
+	@Column(name = "degree")
+	private String degree;
 	
 	@ManyToOne
 	@JoinColumn(name="portfolio_id", nullable=false)
+	@JsonBackReference
 	private Portfolio portfolio;
 	
 }
