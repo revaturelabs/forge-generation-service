@@ -57,5 +57,8 @@ public class Portfolio {
 	@JsonBackReference
 	private Set<SkillMatrix> skillMatrix;
 	
+	@OneToMany(mappedBy = "portfolio")
+	@JsonBackReference
+	private Set<IndustryEquivalency> industryEquivalency;
 
 }
