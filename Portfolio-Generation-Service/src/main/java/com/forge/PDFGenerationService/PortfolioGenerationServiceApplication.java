@@ -1,4 +1,4 @@
-package com.forge.PortfolioGenerationService;
+package com.forge.PDFGenerationService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
