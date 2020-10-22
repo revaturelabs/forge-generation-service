@@ -45,7 +45,7 @@ public class User {
 	
 	
 	@OneToMany(mappedBy = "myUser")
-	@JsonManagedReference
+	@JsonManagedReference(value="myUser")
 	private Set<Portfolio> portfolios;
 	
 	

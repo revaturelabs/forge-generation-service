@@ -49,7 +49,7 @@ public class Education {
 	
 	@ManyToOne
 	@JoinColumn(name="portfolio_id", nullable=false)
-	@JsonBackReference
+	@JsonBackReference(value="educationPortfolio")
 	private Portfolio portfolio;
 	
 	@Override

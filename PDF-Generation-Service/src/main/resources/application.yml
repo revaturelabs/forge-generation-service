@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://pega200817usf.cujfdrenfxim.us-east-2.rds.amazonaws.com:5432/trmsdb
+    username: trmsuser
+    password: trmsp@$s
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    properties:
+      hibernate:
+        ddl-auto: update
+        jdbc:
+          lob:
+            non_contextual_creation: true

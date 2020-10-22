@@ -41,27 +41,28 @@ public class Portfolio {
 	private String status;
 	
 	@OneToOne(mappedBy = "portfolio")
+	@JsonBackReference(value="portfolio")
     private AboutMe aboutMe;
 
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=false)
-	@JsonBackReference
+	@JsonBackReference(value="myUser")
 	private User myUser;
 
 	@OneToMany(mappedBy = "portfolio")
-	@JsonManagedReference
+	@JsonManagedReference(value="projectPortfolio")
 	private Set<Project> projects;
 	
 	@OneToMany(mappedBy = "portfolio")
-	@JsonManagedReference
+	@JsonManagedReference(value="educationPortfolio")
 	private Set<Education> education;
 	
 	@OneToMany(mappedBy = "portfolio")
-	@JsonManagedReference
+	@JsonManagedReference(value="matrixPortfolio")
 	private Set<SkillMatrix> skillMatrix;
 	
 	@OneToMany(mappedBy = "portfolio")
-	@JsonManagedReference
+	@JsonManagedReference(value="industryPortfolio")
 	private Set<IndustryEquivalency> industryEquivalency;
 
 	@Override

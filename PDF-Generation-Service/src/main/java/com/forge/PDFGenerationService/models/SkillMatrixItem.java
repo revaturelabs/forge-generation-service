@@ -36,7 +36,7 @@ public class SkillMatrixItem {
 	
 	@ManyToOne
 	@JoinColumn(name="skill_matrix_id", nullable=false)
-	@JsonBackReference
+	@JsonBackReference(value="skillMatrix")
 	private SkillMatrix skillMatrix;
 	
 	@Override

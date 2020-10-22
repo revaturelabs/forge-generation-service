@@ -41,14 +41,14 @@ public class Project {
 	
 	@ManyToOne
 	@JoinColumn(name="portfolio_id", nullable=false)
-	@JsonBackReference
+	@JsonBackReference(value="projectPortfolio")
 	private Portfolio portfolio;
 	
 	@OneToMany(mappedBy = "project")
-	@JsonManagedReference
+	@JsonManagedReference(value="responsibilitiesPortfolio")
 	private Set<ProjectResponsibilities> projectResponsibilities;
 	
 	@OneToMany(mappedBy = "project")
-	@JsonManagedReference
+	@JsonManagedReference(value="technologiesPortfolio")
 	private Set<ProjectTechnologies> projectTechnologies;
 }

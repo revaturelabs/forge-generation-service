@@ -32,7 +32,7 @@ public class IndustryEquivalency {
 	
 	@ManyToOne
 	@JoinColumn(name="portfolio_id", nullable=false)
-	@JsonBackReference
+	@JsonBackReference(value="industryPortfolio")
 	private Portfolio portfolio;
 
 	@Override

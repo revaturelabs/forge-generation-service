@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,10 +40,11 @@ public class AboutMe {
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "portfolio_id")
-	@JsonBackReference
+	@JsonManagedReference(value="portfolio")
     private Portfolio portfolio;
 	
 	@OneToMany(mappedBy = "aboutMe")
+//	@JsonBackReference(value="aboutMe")
 	private Set<AboutMeItem> aboutMeItems;
 	
 	@Override

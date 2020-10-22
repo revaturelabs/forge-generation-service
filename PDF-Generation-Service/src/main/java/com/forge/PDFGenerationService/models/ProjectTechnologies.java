@@ -34,7 +34,7 @@ public class ProjectTechnologies {
 	
 	@ManyToOne
 	@JoinColumn(name="project_id", nullable=false)
-	@JsonBackReference
+	@JsonBackReference(value="technologiesPortfolio")
 	private Project project;
 	
 	@Override
