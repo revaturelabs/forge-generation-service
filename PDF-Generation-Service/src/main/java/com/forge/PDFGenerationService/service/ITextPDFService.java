@@ -379,15 +379,15 @@ public class ITextPDFService {
 
 		this.addMetaData(document, port.getMyUser().getEmail(), port.getMyUser().getFirstName(), port.getId());
 		this.addHeader(document, writer, canvas, port.getMyUser());
-		if(port.getAboutMe() != null)
+		if(port.getAboutMe() != null && !port.getIndustryEquivalency().isEmpty())
 			this.addAboutMe(document, writer, canvas, port.getAboutMe());
-		if(port.getEducation() != null)
+		if(port.getEducation() != null && !port.getEducation().isEmpty())
 			this.addEducation(document, writer, canvas, port.getEducation());
-		if(port.getIndustryEquivalency() != null)
+		if(port.getIndustryEquivalency() != null && !port.getIndustryEquivalency().isEmpty())
 			this.addIndustryEquivalency(document, writer, canvas, port.getIndustryEquivalency());
-		if(port.getSkillMatrix() != null)
+		if(port.getSkillMatrix() != null && !port.getSkillMatrix().isEmpty())
 			this.addSkills(document, writer, canvas, port.getSkillMatrix());
-		if(port.getProjects() != null)
+		if(port.getProjects() != null && !port.getProjects().isEmpty())
 			this.addProjects(document, writer, canvas, port.getProjects());
 
 		
