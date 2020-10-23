@@ -1,11 +1,13 @@
 package com.forge.PortfolioGenerationService.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +20,10 @@ import com.forge.PortfolioGenerationService.repository.UserRepo;
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin
-
 public class AdminController {
 	
 	@Autowired
-	private PortfolioRepo portfolioRepo;
+	public PortfolioRepo portfolioRepo;
 	
 	@Autowired
 	private UserRepo userRepo;
@@ -43,6 +44,25 @@ public class AdminController {
 	@GetMapping("/getAllUsers")
 	public @ResponseBody List<User> getUsers(){
 		return userRepo.findAll();
+	}
+	
+	@GetMapping("/getPortfolioByID/{id}")
+//	@RequestMapping(value = "/getPortfolioByID/{id}", method = RequestMethod.GET)
+	public @ResponseBody Portfolio getPortfolioByID(@PathVariable("id") String id) {
+		int i = Integer.parseInt(id);
+		Portfolio p = portfolioRepo.findById(i);
+		return p;
+	}
+	
+	@GetMapping("/getUserByEmail/{email}")
+	public @ResponseBody User getUserByEmail(@PathVariable("email") String email) {
+		User u = userRepo.findByEmail(email);
+		return u;
+	}
+	
+	@PutMapping("/updatePortfolio")
+	public void updatePortfolio(@RequestBody Portfolio portfolio) {
+		portfolioRepo.save(portfolio);
 	}
 	
 	
