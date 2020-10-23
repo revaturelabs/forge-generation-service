@@ -37,28 +37,28 @@ import com.itextpdf.layout.element.Text;
 
 @Service
 public class ITextPDFService {
-	
+
 	@Autowired
 	private PortfolioRepo portR;
-	
+
 	public ITextPDFService(PortfolioRepo portR) {
-		this.portR=portR;
+		this.portR = portR;
 	}
 
 	public byte[] getPortfolioPDF(int id) {
 		Portfolio port = portR.findById(id);
 		return this.createITextPortfolioPDF(port);
 	}
-	
+
 	// common functionality - adds a named header to categories
 	public void addNamedHeader(Document document, PdfWriter writer, Canvas canvas, String headerName) {
-		PdfFont largeBold=null;
+		PdfFont largeBold = null;
 		try {
 			largeBold = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Paragraph header = new Paragraph();
 		header.setFontSize(20);
 		header.setFont(largeBold);
@@ -66,66 +66,63 @@ public class ITextPDFService {
 		document.add(header);
 	}
 
-
-	private void addProjectResponsibilitiesItem(Document document, PdfWriter writer, Canvas canvas, ProjectResponsibilities resp) {
-		PdfFont small=null;
+	private void addProjectResponsibilitiesItem(Document document, PdfWriter writer, Canvas canvas,
+			ProjectResponsibilities resp) {
+		PdfFont small = null;
 		try {
-			small = PdfFontFactory.createFont(StandardFonts.HELVETICA	);
+			small = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Paragraph matrixP = new Paragraph();
 
-		matrixP.setBackgroundColor(new DeviceRgb(115,165,194));
+		matrixP.setBackgroundColor(new DeviceRgb(115, 165, 194));
 
 		matrixP.add(new Paragraph(resp.getContent()).setFont(small).setFontSize(8));
 
-
-		
 		document.add(matrixP);
 	}
 
-
 	private void addProjectItem(Document document, PdfWriter writer, Canvas canvas, Project project) {
-		PdfFont small=null;
+		PdfFont small = null;
 		try {
-			small = PdfFontFactory.createFont(StandardFonts.HELVETICA	);
+			small = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Paragraph projectP = new Paragraph();
 
-		projectP.setBackgroundColor(new DeviceRgb(115,165,194));
+		projectP.setBackgroundColor(new DeviceRgb(115, 165, 194));
 
 		projectP.add(new Paragraph(project.getName()).setFont(small).setFontSize(18));
 		projectP.add(new Text("\n").setFontSize(4).setFont(small));
 		projectP.add(new Text(project.getDescription()).setFontSize(12).setFont(small));
 		projectP.add(new Text("\n").setFontSize(4));
 
-		
 		document.add(projectP);
 		projectP = new Paragraph();
 		projectP.add("Technologies Used: ");
 		int index = 0;
 		// add each education item to the list with addEducationItem
-		for (ProjectTechnologies tech: project.getProjectTechnologies()) {
+		for (ProjectTechnologies tech : project.getProjectTechnologies()) {
 			index++;
 			projectP.add(tech.getName());
 //			project.getProjectTechnologies().remove(tech);
-			if(index < project.getProjectTechnologies().size()) {
+			if (index < project.getProjectTechnologies().size()) {
 				projectP.add(", ");
 			}
 		}
 
 		projectP.add("\n");
 		projectP.add("Roles and Responsibilities");
-		
+
 		document.add(projectP);
 		// add each education item to the list with addEducationItem
 		for (int i = 0; i < project.getProjectResponsibilities().size(); i++) {
-			this.addProjectResponsibilitiesItem(document, writer, canvas, project.getProjectResponsibilities().iterator().next());
+			this.addProjectResponsibilitiesItem(document, writer, canvas,
+					project.getProjectResponsibilities().iterator().next());
 		}
 
 	}
@@ -135,54 +132,53 @@ public class ITextPDFService {
 		Paragraph projects = new Paragraph();
 
 		this.addNamedHeader(document, writer, canvas, "Projects");
-		
+
 		// add each education item to the list with addEducationItem
 
 		document.add(projects);
 
-		for (Project projectsList: project) {
+		for (Project projectsList : project) {
 			this.addProjectItem(document, writer, canvas, projectsList);
 		}
 	}
 
 	private void addSkillSubItem(Document document, PdfWriter writer, Canvas canvas, SkillMatrixItem matrixItem) {
-		PdfFont small=null;
+		PdfFont small = null;
 		try {
-			small = PdfFontFactory.createFont(StandardFonts.HELVETICA	);
+			small = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Paragraph matrixP = new Paragraph();
 
-		matrixP.setBackgroundColor(new DeviceRgb(115,165,194));
+		matrixP.setBackgroundColor(new DeviceRgb(115, 165, 194));
 
 		matrixP.add(new Paragraph(matrixItem.getName()).setFont(small).setFontSize(12));
 		matrixP.add(new Text(matrixItem.getExperience() + " Months"));
 		matrixP.add(new Text("\n").setFontSize(12).setFont(small));
 
-		
 		document.add(matrixP);
 	}
 
 	private void addSkillItem(Document document, PdfWriter writer, Canvas canvas, SkillMatrix matrix) {
-		PdfFont small=null;
+		PdfFont small = null;
 		try {
-			small = PdfFontFactory.createFont(StandardFonts.HELVETICA	);
+			small = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		Paragraph matrixP = new Paragraph();
 
-		matrixP.setBackgroundColor(new DeviceRgb(115,165,194));
+		matrixP.setBackgroundColor(new DeviceRgb(115, 165, 194));
 
 		matrixP.add(new Paragraph(matrix.getTitle()).setFont(small).setFontSize(18));
 		matrixP.add(new Text("\t").setFontSize(12).setFont(small));
 
 		// add each education item to the list with addEducationItem
 		document.add(matrixP);
-		for (SkillMatrixItem matrixI: matrix.getSkillMatrixItem()) {
+		for (SkillMatrixItem matrixI : matrix.getSkillMatrixItem()) {
 			this.addSkillSubItem(document, writer, canvas, matrixI);
 		}
 	}
@@ -194,42 +190,41 @@ public class ITextPDFService {
 		// color of dark gray is 72,76,86
 		// color of orange is 242, 105, 38
 		// white is 255,255,255. HUH!
-		
+
 		Paragraph skills = new Paragraph();
 
 		this.addNamedHeader(document, writer, canvas, "Skill Matrix");
-		
+
 		// add each education item to the list with addEducationItem
 
 		document.add(skills);
-		for (SkillMatrix matrix: matrixList) {
+		for (SkillMatrix matrix : matrixList) {
 			this.addSkillItem(document, writer, canvas, matrix);
 		}
 
-
 	}
-	
-	private void addIndustryEquivalencyItem(Document document, PdfWriter writer, Canvas canvas, IndustryEquivalency equiv) {
-		PdfFont small=null;
+
+	private void addIndustryEquivalencyItem(Document document, PdfWriter writer, Canvas canvas,
+			IndustryEquivalency equiv) {
+		PdfFont small = null;
 		try {
-			small = PdfFontFactory.createFont(StandardFonts.HELVETICA	);
+			small = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 
 		Paragraph equivP = new Paragraph();
-		equivP.setBackgroundColor(new DeviceRgb(115,165,194));
+		equivP.setBackgroundColor(new DeviceRgb(115, 165, 194));
 
 		equivP.add(new Paragraph(equiv.getTechnology()).setFont(small).setFontSize(18));
 		equivP.add(new Text("\n").setFontSize(12).setFont(small));
 		equivP.add(new Paragraph("Experience Equivalency: " + equiv.getMonths() + " Months"));
 
-
 		document.add(equivP);
 	}
 
-	private void addIndustryEquivalency(Document document, PdfWriter writer, Canvas canvas, Set<IndustryEquivalency> equivs) {
+	private void addIndustryEquivalency(Document document, PdfWriter writer, Canvas canvas,
+			Set<IndustryEquivalency> equivs) {
 		// color of blue is 115,165,194
 		// color of yellow is 253,181,21
 		// color of light gray is 185, 185, 186
@@ -240,23 +235,23 @@ public class ITextPDFService {
 		this.addNamedHeader(document, writer, canvas, "Industry Equivalency");
 
 		document.add(about);
-		
+
 		// add each education item to the list with addEducationItem
-		for(IndustryEquivalency equiv : equivs) {
+		for (IndustryEquivalency equiv : equivs) {
 			this.addIndustryEquivalencyItem(document, writer, canvas, equiv);
 		}
 	}
 
 	private void addEducationItem(Document document, PdfWriter writer, Canvas canvas, Education education) {
-		PdfFont small=null;
+		PdfFont small = null;
 		try {
-			small = PdfFontFactory.createFont(StandardFonts.HELVETICA	);
+			small = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Paragraph educationItem = new Paragraph();
-		canvas.setBackgroundColor(new DeviceRgb(115,165,194));
+		canvas.setBackgroundColor(new DeviceRgb(115, 165, 194));
 
 		educationItem.add(new Paragraph(education.getUniversity()).setFont(small).setFontSize(18));
 		educationItem.add(new Text("\n").setFontSize(12).setFont(small));
@@ -278,21 +273,21 @@ public class ITextPDFService {
 
 		document.add(about);
 		// add each education item to the list with addEducationItem
-		for(Education edu : education) {
+		for (Education edu : education) {
 			this.addEducationItem(document, writer, canvas, edu);
 		}
-	
+
 	}
 
 	private void addAboutMeItem(Document document, PdfWriter writer, Paragraph about, AboutMeItem aboutMeItem) {
-		PdfFont small=null;
+		PdfFont small = null;
 		try {
-			small = PdfFontFactory.createFont(StandardFonts.HELVETICA	);
+			small = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		document.setBackgroundColor(new DeviceRgb(115,165,194));
+		document.setBackgroundColor(new DeviceRgb(115, 165, 194));
 		about.add(new Paragraph(aboutMeItem.getContent()).setFont(small).setFontSize(12));
 
 	}
@@ -304,12 +299,12 @@ public class ITextPDFService {
 		// color of dark gray is 72,76,86
 		// color of orange is 242, 105, 38
 		// white is 255,255,255. HUH!
-		
+
 		Paragraph about = new Paragraph();
 		this.addNamedHeader(document, writer, canvas, "About Me");
-		about.setBackgroundColor(new DeviceRgb(115,165,194));
+		about.setBackgroundColor(new DeviceRgb(115, 165, 194));
 		about.add(new Text(aboutMe.getDescription()).setFontSize(12));
-		for(AboutMeItem ami : aboutMe.getAboutMeItems()) {
+		for (AboutMeItem ami : aboutMe.getAboutMeItems()) {
 			this.addAboutMeItem(document, writer, about, ami);
 		}
 		document.add(about);
@@ -324,23 +319,23 @@ public class ITextPDFService {
 		// color of dark gray is 72,76,86
 		// color of orange is 242, 105, 38
 		// white is 255,255,255. HUH!
-		
-		PdfFont small=null;
+
+		PdfFont small = null;
 		try {
-			small = PdfFontFactory.createFont(StandardFonts.HELVETICA	);
+			small = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Paragraph header = new Paragraph();
 		this.addNamedHeader(document, writer, canvas, user.getFirstName() + " " + user.getLastName());
 		header.add(new Text("Software Engineer\n").setFontSize(12).setFont(small));
 
 		header.add(new Paragraph("Email: ").setFontSize(18).setFont(small));
-				header.add (new Paragraph(user.getEmail() ).setFontSize(12).setFont(small));
+		header.add(new Paragraph(user.getEmail()).setFontSize(12).setFont(small));
 		document.add(header);
 		SolidLine line = new SolidLine(1f);
-		line.setColor(new DeviceRgb(242,105,38));
+		line.setColor(new DeviceRgb(242, 105, 38));
 		LineSeparator ls = new LineSeparator(line);
 		ls.setWidth(565);
 		document.add(ls);
@@ -372,26 +367,28 @@ public class ITextPDFService {
 		document.setRightMargin(13.5f);
 		document.setBottomMargin(13.5f);
 
-		
-		
-		Canvas canvas = new Canvas(pdfCanvas, pdf, new Rectangle(document.getLeftMargin(),document.getTopMargin(),550,850));
+		Canvas canvas = new Canvas(pdfCanvas, pdf,
+				new Rectangle(document.getLeftMargin(), document.getTopMargin(), 550, 850));
 
+		try {
+			this.addMetaData(document, port.getMyUser().getEmail(), port.getMyUser().getFirstName(), port.getId());
+			this.addHeader(document, writer, canvas, port.getMyUser());
+			if (port.getAboutMe() != null && !port.getIndustryEquivalency().isEmpty())
+				this.addAboutMe(document, writer, canvas, port.getAboutMe());
+			if (port.getEducation() != null && !port.getEducation().isEmpty())
+				this.addEducation(document, writer, canvas, port.getEducation());
+			if (port.getIndustryEquivalency() != null && !port.getIndustryEquivalency().isEmpty())
+				this.addIndustryEquivalency(document, writer, canvas, port.getIndustryEquivalency());
+			if (port.getSkillMatrix() != null && !port.getSkillMatrix().isEmpty())
+				this.addSkills(document, writer, canvas, port.getSkillMatrix());
+			if (port.getProjects() != null && !port.getProjects().isEmpty())
+				this.addProjects(document, writer, canvas, port.getProjects());
 
-		this.addMetaData(document, port.getMyUser().getEmail(), port.getMyUser().getFirstName(), port.getId());
-		this.addHeader(document, writer, canvas, port.getMyUser());
-		if(port.getAboutMe() != null && !port.getIndustryEquivalency().isEmpty())
-			this.addAboutMe(document, writer, canvas, port.getAboutMe());
-		if(port.getEducation() != null && !port.getEducation().isEmpty())
-			this.addEducation(document, writer, canvas, port.getEducation());
-		if(port.getIndustryEquivalency() != null && !port.getIndustryEquivalency().isEmpty())
-			this.addIndustryEquivalency(document, writer, canvas, port.getIndustryEquivalency());
-		if(port.getSkillMatrix() != null && !port.getSkillMatrix().isEmpty())
-			this.addSkills(document, writer, canvas, port.getSkillMatrix());
-		if(port.getProjects() != null && !port.getProjects().isEmpty())
-			this.addProjects(document, writer, canvas, port.getProjects());
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			return null;
+		}
 
-		
-		
 		canvas.close();
 		document.close();
 		byteArr = out.toByteArray();
