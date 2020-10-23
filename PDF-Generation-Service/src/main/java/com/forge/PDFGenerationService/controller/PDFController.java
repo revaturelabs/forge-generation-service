@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.forge.PDFGenerationService.models.Portfolio;
-import com.forge.PDFGenerationService.models.User;
+
 import com.forge.PDFGenerationService.service.ITextPDFService;
 import com.forge.PDFGenerationService.service.PortfolioService;
 import com.forge.PDFGenerationService.service.S3FileService;
@@ -38,25 +38,16 @@ public class PDFController {
 	
 	@GetMapping(value = "/getPDF/{username}/{id}", produces = "application/pdf")
 	public byte[] getPDF(@PathVariable("username") String username, @PathVariable("id") int id) {
-		return s3S.getFile("catcssp2imgbucket", username, id);
+		return s3S.getFile("catcssp2imgbucket/", username, id);
 	}
 	
 	@PostMapping("/storePDF/{id}")
 	public void storePDF(@PathVariable("id") int id) {
 		Portfolio p = portS.getPortfolioById(id);
 		System.out.println("Portfolio id: " + p.getId() + " Portfolio Username: " + p.getMyUser().getEmail());
-		s3S.upload("catcssp2imgbucket", p.getMyUser().getEmail(), id, iPortS.createITextPortfolioPDF(p));
+		s3S.upload("catcssp2imgbucket/", p.getMyUser().getEmail(), id, iPortS.createITextPortfolioPDF(p));
 	}
-	
-	@PostMapping(value="/createUser")
-	public void createUser(@RequestBody User user) {
-		
-	}
-	
-	@GetMapping(value = "/getItextPDF/{id}", produces = "application/pdf")
-	public byte[] getITextPDF(@PathVariable("id") int id) {
-		return iPortS.getPortfolioPDF(id);
-	}
+
 
 
 }

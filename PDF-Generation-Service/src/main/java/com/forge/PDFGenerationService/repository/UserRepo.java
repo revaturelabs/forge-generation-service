@@ -10,6 +10,7 @@ import com.forge.PDFGenerationService.models.User;
 @Repository
 public interface UserRepo extends CrudRepository<User, Integer>{
 	
+	@SuppressWarnings("unchecked")
 	public User save(User user);
 	
 	public List<User> findAll();

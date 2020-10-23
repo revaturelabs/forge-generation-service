@@ -26,14 +26,18 @@ public class S3FileService {
 
 	// helper method for upload. we take in a byte array (our raw file data) and
 	// then spit out a reference to the full file.
-	private File writeFile(byte[] input) {
-		File file = new File("file");
+	public File writeFile(byte[] input, String filename) {
+		File file = new File(filename);
+		if (input.length == 0) {
+			return null;
+		}
 		try {
 			OutputStream out = new FileOutputStream(file);
 			out.write(input);
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
 		return file;
 	}
@@ -46,29 +50,28 @@ public class S3FileService {
 	public String upload(String bucketName, String username, int portfolioid, byte[] content) {
 		AmazonS3 s3client = new AmazonS3Client(credentials);
 
-		File f = this.writeFile(content);
+		File f = this.writeFile(content, bucketName);
 
 		// write our object to our predefined output bucket
 		try {
 			s3client.putObject(new PutObjectRequest(bucketName, username + "/" + portfolioid, f));
 			s3client.setObjectAcl(bucketName, username + "/" + portfolioid, CannedAccessControlList.PublicRead);
-		} catch (AmazonS3Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
 			return "Failed to upload file.";
 		}
 		f.delete();
 		return "Successful upload.";
 	}
-	
+
 	public String delete(String bucketName, String username, int portfolioid) {
-		
+
 		AmazonS3 s3client = new AmazonS3Client(credentials);
 		try {
 			s3client.deleteObject(bucketName, username + "/" + (portfolioid) + "");
 		} catch (AmazonS3Exception e) {
 			return "Could not delete file.";
 		}
-		
+
 		return "File deleted.";
 	}
 
@@ -83,7 +86,7 @@ public class S3FileService {
 		// grab the object on the s3 instance
 		S3Object s3object = null;
 		try {
-			s3object = s3client.getObject(bucketName + "/" + username, id);
+			s3object = s3client.getObject(bucketName + username, id);
 		} catch (AmazonS3Exception e) {
 			System.out.println("Problem getting file: " + e.getMessage());
 			return null;
@@ -93,6 +96,7 @@ public class S3FileService {
 			out = IOUtils.toByteArray(s3object.getObjectContent());
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
 
 		// give the consumer a pile o bytes

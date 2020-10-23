@@ -10,6 +10,7 @@ import com.forge.PDFGenerationService.models.Education;
 @Repository
 public interface EducationRepo extends CrudRepository<Education, Integer>{
 
+	@SuppressWarnings("unchecked")
 	public Education save(Education education);
 	
 	public List<Education> findAll();

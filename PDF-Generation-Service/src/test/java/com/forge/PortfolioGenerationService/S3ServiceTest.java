@@ -29,19 +29,30 @@ public class S3ServiceTest {
 	@Test
 	@Order(3)
 	public void uploadFile() {
-		Assertions.assertEquals("Successful upload.", s3Serv.upload(bucket, username, id, content));
+		Assertions.assertEquals("Successful upload.", s3Serv.upload(bucket+"/", username, id, content));
 	}
 	
 	@Test
 	@Order(4)
 	public void notNullFile() {
-		Assertions.assertNotNull(s3Serv.getFile(bucket, username, id));
+		Assertions.assertNotNull(s3Serv.getFile(bucket+"/", username, id));
 	}
 	
 	@Test
 	@Order(5)
 	public void deleteValidFile() {
-		Assertions.assertEquals("File deleted.", s3Serv.delete(bucket, username, id));
+		Assertions.assertEquals("File deleted.", s3Serv.delete(bucket+"/", username, id));
 	}
 	
+	@Test
+	@Order(6)
+	public void createInvalidFile() {
+		Assertions.assertNull(s3Serv.writeFile(new byte[0], ""));
+	}
+	
+	@Test
+	@Order(7)
+	public void attemptToReadInvalidObject() {
+		Assertions.assertNull(s3Serv.getFile(bucket, "", 0));
+	}
 }

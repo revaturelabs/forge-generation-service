@@ -10,6 +10,7 @@ import com.forge.PDFGenerationService.models.Portfolio;
 @Repository
 public interface PortfolioRepo extends CrudRepository<Portfolio, Integer>{
 
+	@SuppressWarnings("unchecked")
 	public Portfolio save(Portfolio portfolio);
 
 	public List<Portfolio> findAll();
