@@ -1,4 +1,4 @@
-package com.forge.PortfolioGenerationService.models;
+package com.forge.PDFGenerationService.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,8 +32,14 @@ public class IndustryEquivalency {
 	
 	@ManyToOne
 	@JoinColumn(name="portfolio_id", nullable=false)
-	@JsonBackReference
+	@JsonBackReference(value="industryPortfolio")
 	private Portfolio portfolio;
+
+	@Override
+	public String toString() {
+		return "IndustryEquivalency [id=" + id + ", months=" + months + ", technology=" + technology + "]";
+	}
+	
 	
 	
 }
