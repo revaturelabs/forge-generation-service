@@ -1,6 +1,5 @@
-package com.forge.PortfolioGenerationService.controller;
+package com.forge.PDFGenerationService.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.forge.PortfolioGenerationService.models.Portfolio;
-import com.forge.PortfolioGenerationService.models.User;
-import com.forge.PortfolioGenerationService.repository.PortfolioRepo;
-import com.forge.PortfolioGenerationService.repository.UserRepo;
+import com.forge.PDFGenerationService.models.Portfolio;
+import com.forge.PDFGenerationService.models.User;
+import com.forge.PDFGenerationService.repository.PortfolioRepo;
+import com.forge.PDFGenerationService.repository.UserRepo;
 
 @RestController
 @RequestMapping("/admin")
