@@ -1,18 +1,12 @@
 package com.forge.PortfolioGenerationService;
 
-import static io.restassured.RestAssured.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 
@@ -22,7 +16,7 @@ import com.forge.PDFGenerationService.service.ITextPDFService;
 import com.forge.PDFGenerationService.service.PortfolioService;
 import com.forge.PDFGenerationService.service.S3FileService;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest(classes= {ITextPDFService.class,PortfolioService.class,S3FileService.class, PDFController.class})
 public class PDFControllerTest {
 	
