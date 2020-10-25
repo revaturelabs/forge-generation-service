@@ -18,12 +18,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Generated
 @Table(name = "project")
 @EqualsAndHashCode(exclude = {"projectResponsibilities", "projectTechnologies"})
 public class Project {

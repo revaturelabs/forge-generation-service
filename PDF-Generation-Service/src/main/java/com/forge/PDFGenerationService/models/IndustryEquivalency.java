@@ -11,12 +11,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Generated
 @Table(name = "industry_equivalency")
 public class IndustryEquivalency {
 

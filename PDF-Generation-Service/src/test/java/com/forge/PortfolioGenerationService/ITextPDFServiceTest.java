@@ -41,7 +41,7 @@ class ITextPDFServiceTest {
 		Assertions.assertArrayEquals(expected, pdfS.getPortfolioPDF(id));
 		
 	}
-	
+
 	
 	//Checks whether a PDF is produced with a Portfolio with a noArgs constructor
 	@Test
