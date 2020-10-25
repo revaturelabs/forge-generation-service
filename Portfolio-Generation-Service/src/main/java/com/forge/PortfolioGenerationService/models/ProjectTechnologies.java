@@ -1,4 +1,4 @@
-package com.forge.PDFGenerationService.models;
+package com.forge.PortfolioGenerationService.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,32 +13,32 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Generated
-@Table(name = "project_responsibilites")
-public class ProjectResponsibilities {
+@Table(name = "project_technologies")
+@EqualsAndHashCode(exclude = "project")
+public class ProjectTechnologies {
 
 	@Id
-	@Column(name = "project_responsibilities_id")
+	@Column(name = "project_technologies_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "content", nullable = false)
-	private String content;
+	@Column(name = "name")
+	private String name;
 	
 	@ManyToOne
 	@JoinColumn(name="project_id", nullable=false)
-	@JsonBackReference(value="responsibilitiesPortfolio")
+	@JsonBackReference(value="technologiesPortfolio")
 	private Project project;
 	
 	@Override
 	public String toString() {
-		return "ProjectResponsibilities [id=" + id + ", content=" + content + "]";
+		return "ProjectTechnologies [id=" + id + ", name=" + name + "]";
 	}
 }

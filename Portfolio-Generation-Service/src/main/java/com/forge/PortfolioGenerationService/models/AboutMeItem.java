@@ -1,4 +1,4 @@
-package com.forge.PDFGenerationService.models;
+package com.forge.PortfolioGenerationService.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,36 +9,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Generated
-@Table(name = "project_responsibilites")
-public class ProjectResponsibilities {
+@Table(name = "about_me_item")
+//@EqualsAndHashCode(exclude = {"aboutMeItems"})
+public class AboutMeItem {
 
 	@Id
-	@Column(name = "project_responsibilities_id")
+	@Column(name = "about_me_item_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "content", nullable = false)
+	@Column(name = "content")
 	private String content;
 	
 	@ManyToOne
-	@JoinColumn(name="project_id", nullable=false)
-	@JsonBackReference(value="responsibilitiesPortfolio")
-	private Project project;
+	@JoinColumn(name="about_me_id", nullable=false)
+//	@JsonManagedReference(value="aboutMe")
+	private AboutMe aboutMe;
 	
 	@Override
 	public String toString() {
-		return "ProjectResponsibilities [id=" + id + ", content=" + content + "]";
+		return "AboutMeItem [id=" + id + ", content=" + content + "]";
 	}
 }

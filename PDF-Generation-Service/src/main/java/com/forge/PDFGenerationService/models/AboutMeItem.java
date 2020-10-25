@@ -11,12 +11,14 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Generated
 @Table(name = "about_me_item")
 //@EqualsAndHashCode(exclude = {"aboutMeItems"})
 public class AboutMeItem {

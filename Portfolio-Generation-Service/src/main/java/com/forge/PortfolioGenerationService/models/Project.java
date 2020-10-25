@@ -1,4 +1,4 @@
-package com.forge.PDFGenerationService.models;
+package com.forge.PortfolioGenerationService.models;
 
 import java.util.Set;
 
@@ -18,37 +18,37 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Generated
-@Table(name = "skill_matrix")
-@EqualsAndHashCode(exclude = {"skillMatrixItem"})
-public class SkillMatrix {
+@Table(name = "project")
+@EqualsAndHashCode(exclude = {"projectResponsibilities", "projectTechnologies"})
+public class Project {
 
 	@Id
-	@Column(name = "skill_matrix_id")
+	@Column(name = "project_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "title")
-	private String title;
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "description")
+	private String description;
 	
 	@ManyToOne
-	@JsonBackReference(value="matrixPortfolio")
 	@JoinColumn(name="portfolio_id", nullable=false)
+	@JsonBackReference(value="projectPortfolio")
 	private Portfolio portfolio;
 	
-	@OneToMany(mappedBy = "skillMatrix")
-	@JsonManagedReference(value="skillMatrix")
-	private Set<SkillMatrixItem> skillMatrixItem;
+	@OneToMany(mappedBy = "project")
+	@JsonManagedReference(value="responsibilitiesPortfolio")
+	private Set<ProjectResponsibilities> projectResponsibilities;
 	
-	@Override
-	public String toString() {
-		return "SkillMatrix [id=" + id + ", title=" + title + ", skillMatrixItem=" + skillMatrixItem + "]";
-	}
+	@OneToMany(mappedBy = "project")
+	@JsonManagedReference(value="technologiesPortfolio")
+	private Set<ProjectTechnologies> projectTechnologies;
 }

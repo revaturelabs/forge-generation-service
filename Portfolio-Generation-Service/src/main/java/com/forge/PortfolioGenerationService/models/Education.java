@@ -1,6 +1,6 @@
-package com.forge.PDFGenerationService.models;
+package com.forge.PortfolioGenerationService.models;
 
-import java.util.Set;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,46 +9,52 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Generated
-@Table(name = "skill_matrix")
-@EqualsAndHashCode(exclude = {"skillMatrixItem"})
-public class SkillMatrix {
+@Table(name = "education")
+@EqualsAndHashCode(exclude = {"portfolio"})
+public class Education {
 
 	@Id
-	@Column(name = "skill_matrix_id")
+	@Column(name = "education_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "title")
-	private String title;
+	@Column(name = "university")
+	private String university;
+	
+	@Column(name = "graduation")
+	private Date graduation;
+	
+	@Column(name = "major")
+	private String major;
+	
+	@Column(name = "minor")
+	private String minor;
+	
+	@Column(name = "degree")
+	private String degree;
 	
 	@ManyToOne
-	@JsonBackReference(value="matrixPortfolio")
 	@JoinColumn(name="portfolio_id", nullable=false)
+	@JsonBackReference(value="educationPortfolio")
 	private Portfolio portfolio;
-	
-	@OneToMany(mappedBy = "skillMatrix")
-	@JsonManagedReference(value="skillMatrix")
-	private Set<SkillMatrixItem> skillMatrixItem;
 	
 	@Override
 	public String toString() {
-		return "SkillMatrix [id=" + id + ", title=" + title + ", skillMatrixItem=" + skillMatrixItem + "]";
+		return "Education [id=" + id + ", university=" + university + ", graduation=" + graduation + ", major=" + major
+				+ ", minor=" + minor + "]";
 	}
 }

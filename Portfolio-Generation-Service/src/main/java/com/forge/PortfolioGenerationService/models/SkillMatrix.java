@@ -1,4 +1,4 @@
-package com.forge.PDFGenerationService.models;
+package com.forge.PortfolioGenerationService.models;
 
 import java.util.Set;
 
@@ -18,14 +18,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Generated
 @Table(name = "skill_matrix")
 @EqualsAndHashCode(exclude = {"skillMatrixItem"})
 public class SkillMatrix {

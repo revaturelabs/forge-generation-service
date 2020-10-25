@@ -1,4 +1,4 @@
-package com.forge.PDFGenerationService.models;
+package com.forge.PortfolioGenerationService.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,32 +13,34 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Generated
-@Table(name = "project_responsibilites")
-public class ProjectResponsibilities {
+@Table(name = "skill_matrix_item")
+//@EqualsAndHashCode(exclude = {"skillMatrixItems"})
+public class SkillMatrixItem {
 
 	@Id
-	@Column(name = "project_responsibilities_id")
+	@Column(name = "skill_matrix_item_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "content", nullable = false)
-	private String content;
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "experience")
+	private String experience;
 	
 	@ManyToOne
-	@JoinColumn(name="project_id", nullable=false)
-	@JsonBackReference(value="responsibilitiesPortfolio")
-	private Project project;
+	@JoinColumn(name="skill_matrix_id", nullable=false)
+	@JsonBackReference(value="skillMatrix")
+	private SkillMatrix skillMatrix;
 	
 	@Override
 	public String toString() {
-		return "ProjectResponsibilities [id=" + id + ", content=" + content + "]";
+		return "SkillMatrixItem [id=" + id + ", name=" + name + ", experience=" + experience + "]";
 	}
 }
