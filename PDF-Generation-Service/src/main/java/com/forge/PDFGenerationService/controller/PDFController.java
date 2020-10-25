@@ -45,7 +45,7 @@ public class PDFController {
 	public void storePDF(@PathVariable("id") int id) {
 		Portfolio p = portS.getPortfolioById(id);
 		System.out.println("Portfolio id: " + p.getId() + " Portfolio Username: " + p.getMyUser().getEmail());
-		s3S.upload("catcssp2imgbucket/", p.getMyUser().getEmail(), id, iPortS.createITextPortfolioPDF(p));
+		s3S.upload("catcssp2imgbucket", p.getMyUser().getEmail(), id, iPortS.createITextPortfolioPDF(p));
 	}
 
 
