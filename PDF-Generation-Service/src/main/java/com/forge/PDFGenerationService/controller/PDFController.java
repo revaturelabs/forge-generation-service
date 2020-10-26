@@ -38,14 +38,14 @@ public class PDFController {
 	
 	@GetMapping(value = "/getPDF/{username}/{id}", produces = "application/pdf")
 	public byte[] getPDF(@PathVariable("username") String username, @PathVariable("id") int id) {
-		return s3S.getFile("catcssp2imgbucket/", username, id);
+		return s3S.getFile("revature-forge/", username, id);
 	}
 	
 	@PostMapping("/storePDF/{id}")
 	public void storePDF(@PathVariable("id") int id) {
 		Portfolio p = portS.getPortfolioById(id);
 		System.out.println("Portfolio id: " + p.getId() + " Portfolio Username: " + p.getMyUser().getEmail());
-		s3S.upload("catcssp2imgbucket", p.getMyUser().getEmail(), id, iPortS.createITextPortfolioPDF(p));
+		s3S.upload("revature-forge", p.getMyUser().getEmail(), id, iPortS.createITextPortfolioPDF(p));
 	}
 
 
