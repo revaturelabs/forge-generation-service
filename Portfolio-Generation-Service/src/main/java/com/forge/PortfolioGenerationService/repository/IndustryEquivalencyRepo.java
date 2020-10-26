@@ -10,6 +10,7 @@ import com.forge.PortfolioGenerationService.models.IndustryEquivalency;
 @Repository
 public interface IndustryEquivalencyRepo extends CrudRepository<IndustryEquivalency, Integer>{
 
+	@SuppressWarnings("unchecked")
 	public IndustryEquivalency save(IndustryEquivalency industryEquivalency);
 	
 	public List<IndustryEquivalency> findAll();

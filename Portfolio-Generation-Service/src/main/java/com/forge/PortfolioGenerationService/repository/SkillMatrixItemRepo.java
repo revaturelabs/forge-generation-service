@@ -10,6 +10,7 @@ import com.forge.PortfolioGenerationService.models.SkillMatrixItem;
 @Repository
 public interface SkillMatrixItemRepo extends CrudRepository<SkillMatrixItem, Integer>{
 
+	@SuppressWarnings("unchecked")
 	public SkillMatrixItem save(SkillMatrixItem skillMatrixItem);
 	
 	public List<SkillMatrixItem> findAll();

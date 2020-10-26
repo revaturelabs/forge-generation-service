@@ -10,11 +10,12 @@ import com.forge.PortfolioGenerationService.models.User;
 @Repository
 public interface UserRepo extends CrudRepository<User, Integer>{
 	
+	@SuppressWarnings("unchecked")
 	public User save(User user);
 	
 	public List<User> findAll();
 	
-	public User findById(int id);
+	public User findByUserId(int id);
 	
 	public User findByFirstName(String firstName);
 	

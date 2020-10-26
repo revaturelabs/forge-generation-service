@@ -1,6 +1,6 @@
 package com.forge.PortfolioGenerationService.models;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +14,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "portfolio")
+@EqualsAndHashCode(exclude = {"projects", "education", "skillMatrix", "industryEquivalency"})
 public class Portfolio {
  
 	@Id
@@ -38,27 +41,32 @@ public class Portfolio {
 	private String status;
 	
 	@OneToOne(mappedBy = "portfolio")
+	@JsonBackReference(value="portfolio")
     private AboutMe aboutMe;
-	
+
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=false)
-	@JsonBackReference
+	@JsonBackReference(value="myUser")
 	private User myUser;
 
 	@OneToMany(mappedBy = "portfolio")
-	@JsonBackReference
-	private List<Project> projects;
+	@JsonManagedReference(value="projectPortfolio")
+	private Set<Project> projects;
 	
 	@OneToMany(mappedBy = "portfolio")
-	@JsonBackReference
-	private List<Education> education;
+	@JsonManagedReference(value="educationPortfolio")
+	private Set<Education> education;
 	
 	@OneToMany(mappedBy = "portfolio")
-	@JsonBackReference
-	private List<SkillMatrix> skillMatrix;
+	@JsonManagedReference(value="matrixPortfolio")
+	private Set<SkillMatrix> skillMatrix;
 	
 	@OneToMany(mappedBy = "portfolio")
-	@JsonBackReference
-	private List<IndustryEquivalency> industryEquivalency;
+	@JsonManagedReference(value="industryPortfolio")
+	private Set<IndustryEquivalency> industryEquivalency;
 
+	@Override
+	public String toString() {
+		return "Portfolio [id=" + id + ", belongs_to=" + belongsTo + ", status=" + status + "]";
+	}
 }

@@ -11,6 +11,7 @@ import com.forge.PortfolioGenerationService.models.Project;
 public interface ProjectRepo extends CrudRepository<Project, Integer>{
 
 	
+	@SuppressWarnings("unchecked")
 	public Project save(Project project);
 	
 	public List<Project> findAll();

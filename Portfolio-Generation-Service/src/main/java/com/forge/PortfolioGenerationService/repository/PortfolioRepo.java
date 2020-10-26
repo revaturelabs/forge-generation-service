@@ -1,4 +1,4 @@
-package com.forge.PortfolioGenerationService.repository;
+package com.forge.PortfolioGenerationService.repository;	
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import com.forge.PortfolioGenerationService.models.Portfolio;
 @Repository
 public interface PortfolioRepo extends CrudRepository<Portfolio, Integer>{
 
+	@SuppressWarnings("unchecked")
 	public Portfolio save(Portfolio portfolio);
 
 	public List<Portfolio> findAll();

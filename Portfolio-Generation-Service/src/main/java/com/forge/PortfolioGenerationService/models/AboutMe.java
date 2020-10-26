@@ -1,6 +1,6 @@
 package com.forge.PortfolioGenerationService.models;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,8 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -22,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "About_Me_Table")
+@EqualsAndHashCode(exclude = {"portfolio", "aboutMeItems"})
 public class AboutMe {
 	
 	@Id
@@ -35,8 +39,15 @@ public class AboutMe {
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "portfolio_id")
+	@JsonManagedReference(value="portfolio")
     private Portfolio portfolio;
 	
 	@OneToMany(mappedBy = "aboutMe")
-	private List<AboutMeItem> aboutMeItems;
+//	@JsonBackReference(value="aboutMe")
+	private Set<AboutMeItem> aboutMeItems;
+	
+	@Override
+	public String toString() {
+		return "AboutMe [id=" + id + ", description=" + description + ", aboutMeItems=" + aboutMeItems + "]";
+	}
 }
