@@ -255,6 +255,8 @@ public class ITextPDFService {
 
 		educationItem.add(new Paragraph(education.getUniversity()).setFont(small).setFontSize(18));
 		educationItem.add(new Text("\n").setFontSize(12).setFont(small));
+		educationItem.add(new Paragraph(education.getDegree()).setFont(small).setFontSize(16));
+		educationItem.add(new Text("\n"));
 		educationItem.add(new Paragraph("Major: " + education.getMajor() + "\t Minor: " + education.getMinor()));
 		educationItem.add(new Text("\n"));
 		educationItem.add(new Paragraph("Date of Graduation: " + education.getGraduation().toLocaleString()));
