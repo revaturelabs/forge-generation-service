@@ -34,13 +34,13 @@ class ITextPDFServiceTest {
 
 
 	// Checks whether a byte array is returned by displaying an id
-	@Test
-	public void testgetPortfolioPDF() {
-		int id = 0;
-		byte[] expected = null;
-		Assertions.assertArrayEquals(expected, pdfS.getPortfolioPDF(id));
-		
-	}
+//	@Test
+//	public void testgetPortfolioPDF() {
+//		int id = 0;
+//		byte[] expected = null;
+//		Assertions.assertArrayEquals(expected, pdfS.getPortfolioPDF(id));
+//		
+//	}
 
 	
 	//Checks whether a PDF is produced with a Portfolio with a noArgs constructor

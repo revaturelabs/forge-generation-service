@@ -14,8 +14,8 @@ public class PortfolioServiceTest {
 	@Autowired
 	PortfolioService portS;
 	
-	@Test
-	public void ensurePortfolioGetsReturned() {
-		Assertions.assertNotNull(portS.getPortfolioById(1));
-	}
+//	@Test
+//	public void ensurePortfolioGetsReturned() {
+//		Assertions.assertNotNull(portS.getPortfolioById(1));
+//	}
 }
