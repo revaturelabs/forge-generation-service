@@ -10,7 +10,7 @@ public class S3ServiceTest {
 
 	private S3FileService s3Serv = new S3FileService();
 	private byte[] content = {'I', ' ', 'a','m',' ','f','o','r',' ','u','n','i','t',' ','t','e','s','t','i','n','g',' ','o','n','l','y','.'};
-	private String bucket="revature-forge";
+	private String bucket="catcssp2imgbucket";
 	private String username="unittestuser";
 	private int id=1;
 	
