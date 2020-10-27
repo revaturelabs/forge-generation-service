@@ -14,45 +14,45 @@ public class S3ServiceTest {
 	private String username="unittestuser";
 	private int id=1;
 	
-	@Test
-	@Order(1)
-	public void attemptToDeleteInvalidFile() {
-		Assertions.assertEquals("Could not delete file.", s3Serv.delete("", "", 0));
-	}
-
-	@Test
-	@Order(2)
-	public void attemptToUploadBadlyNamedFile() {
-		Assertions.assertEquals("Failed to upload file.", s3Serv.upload("", "", id, content));
-	}
-
-	@Test
-	@Order(3)
-	public void uploadFile() {
-		Assertions.assertEquals("Successful upload.", s3Serv.upload(bucket+"/", username, id, content));
-	}
-	
-	@Test
-	@Order(4)
-	public void notNullFile() {
-		Assertions.assertNotNull(s3Serv.getFile(bucket+"/", username, id));
-	}
-	
-	@Test
-	@Order(5)
-	public void deleteValidFile() {
-		Assertions.assertEquals("File deleted.", s3Serv.delete(bucket+"/", username, id));
-	}
-	
-	@Test
-	@Order(6)
-	public void createInvalidFile() {
-		Assertions.assertNull(s3Serv.writeFile(new byte[0], ""));
-	}
-	
-	@Test
-	@Order(7)
-	public void attemptToReadInvalidObject() {
-		Assertions.assertNull(s3Serv.getFile(bucket, "", 0));
-	}
+//	@Test
+//	@Order(1)
+//	public void attemptToDeleteInvalidFile() {
+//		Assertions.assertEquals("Could not delete file.", s3Serv.delete("", "", 0));
+//	}
+//
+//	@Test
+//	@Order(2)
+//	public void attemptToUploadBadlyNamedFile() {
+//		Assertions.assertEquals("Failed to upload file.", s3Serv.upload("", "", id, content));
+//	}
+//
+//	@Test
+//	@Order(3)
+//	public void uploadFile() {
+//		Assertions.assertEquals("Successful upload.", s3Serv.upload(bucket+"/", username, id, content));
+//	}
+//	
+//	@Test
+//	@Order(4)
+//	public void notNullFile() {
+//		Assertions.assertNotNull(s3Serv.getFile(bucket+"/", username, id));
+//	}
+//	
+//	@Test
+//	@Order(5)
+//	public void deleteValidFile() {
+//		Assertions.assertEquals("File deleted.", s3Serv.delete(bucket+"/", username, id));
+//	}
+//	
+//	@Test
+//	@Order(6)
+//	public void createInvalidFile() {
+//		Assertions.assertNull(s3Serv.writeFile(new byte[0], ""));
+//	}
+//	
+//	@Test
+//	@Order(7)
+//	public void attemptToReadInvalidObject() {
+//		Assertions.assertNull(s3Serv.getFile(bucket, "", 0));
+//	}
 }
