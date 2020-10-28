@@ -8,6 +8,7 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<packaging>war</packaging>
 	<groupId>com.revature.bobcat</groupId>
 	<artifactId>ProjectThreeEureka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
