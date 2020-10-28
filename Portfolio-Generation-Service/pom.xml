@@ -8,7 +8,6 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<packaging>war</packaging>
 	<groupId>com.forge</groupId>
 	<packaging>war</packaging>
 	<artifactId>Portfolio-Generation-Service</artifactId>
