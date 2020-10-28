@@ -4,6 +4,7 @@ import static org.mockito.Mockito.when;
 
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,6 +44,7 @@ public class PDFControllerTest {
 	
 	// URL: https://catcssp2imgbucket.s3.us-east-2.amazonaws.com/pdf/storePDF/{id}
 	@Test
+	@Disabled
 	public void testStorePDF() {
 		Portfolio expected = new Portfolio(16, "Name1", "Pending", null, null, null, null, null, null);
 		pdfC.storePDF(expected.getId());
