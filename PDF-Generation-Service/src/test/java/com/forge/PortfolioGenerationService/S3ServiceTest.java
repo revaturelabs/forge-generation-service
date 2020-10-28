@@ -1,6 +1,7 @@
 package com.forge.PortfolioGenerationService;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,7 @@ public class S3ServiceTest {
 	private String bucket="catcssp2imgbucket";
 	private String username="unittestuser";
 	private int id=1;
-	
+	@Disabled
 	@Test
 	@Order(1)
 	public void attemptToDeleteInvalidFile() {
@@ -25,19 +26,19 @@ public class S3ServiceTest {
 	public void attemptToUploadBadlyNamedFile() {
 		Assertions.assertEquals("Failed to upload file.", s3Serv.upload("", "", id, content));
 	}
-
+	@Disabled
 	@Test
 	@Order(3)
 	public void uploadFile() {
 		Assertions.assertEquals("Successful upload.", s3Serv.upload(bucket+"/", username, id, content));
 	}
-	
+	@Disabled
 	@Test
 	@Order(4)
 	public void notNullFile() {
 		Assertions.assertNotNull(s3Serv.getFile(bucket+"/", username, id));
 	}
-	
+	@Disabled
 	@Test
 	@Order(5)
 	public void deleteValidFile() {
@@ -49,7 +50,7 @@ public class S3ServiceTest {
 	public void createInvalidFile() {
 		Assertions.assertNull(s3Serv.writeFile(new byte[0], ""));
 	}
-	
+	@Disabled
 	@Test
 	@Order(7)
 	public void attemptToReadInvalidObject() {
