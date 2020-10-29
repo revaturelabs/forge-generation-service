@@ -5,7 +5,7 @@ Spring server for portfolio generation and distribution
 
 1) Unable to create a new portfolio from the UI. Clicking the "Create a Portfolio" button brings up an existing portfolio. Need to create a new portfolio object and a blank portfolio view.
 
-2) When editing an existing portfolio, changes to industry equivalency, skill matrix, and all aspects of projects (except project names) do not persist. Deleting a project does not persist.
+2) When editing an existing portfolio, changes to industry equivalency, skill matrix, and all aspects of projects (except project names) do not persist. Deleting a project does not persist. Submit button for edited portfolios does not work.
 
 3) Unable to add more than one degree to the education section of a portfolio; if a degree is already listed, the add button will replace the existing entry with a new one.
 
