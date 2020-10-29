@@ -9,7 +9,7 @@ Spring server for portfolio generation and distribution
 
 3) Unable to add more than one degree to the education section of a portfolio; if a degree is already listed, the add button will replace the existing entry with a new one.
 
-4) PDF functionality does not exist on the front end. Admins should be able to save PDFs as well in order to send them to prospective employers.
+4) PDF functionality does not exist on the front end, and PDFs can't currently be stored to the Revature s3 bucket. Further info on this issue can be found in the PDF Generation Service project. Also, an important user story we didn't consider: An admin should be able to save/export PDFs in order to send them to prospective employers.
 
 5) Long wait time after new user registration before the registered user can log in.
 
