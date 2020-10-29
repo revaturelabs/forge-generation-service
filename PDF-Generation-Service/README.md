@@ -31,3 +31,14 @@ Behind the scenes of the endpoints are a couple points of interest to cover.  Th
     * Responsbile for interactions with the assigned S3 Bucket.  Important to note is that the credentials are assumed to be supplied in the local machine's /home/usr/.aws/credentials file.  After that, there are three primary methods of upload, getFile, and delete.  There is one utility method of writeFile which converts an array of bytes into a File object.
   - ITextPDFService
     *  This service is responsible for consuming a Portfolio object and generating it into a PDF.  The primary entry point is getPortfolioPDF which retrieves a Portfolio and then sends it to createITextPortfolioPDF(portfolio).  createITextPortfolioPDF will conditionally check each part of a portfolio and add in sections if they are present or not.  After this conversion is done, it returns back an array of bytes, which is then returned by getPortfolioPDF.
+	
+### Important note about the PDF service
+There are a few constraints in using the PDF generation service
+  - In PDFController.java you will notice that there are endpoints that call s3S.getFile() and s3S.upload().  They contain a "/" or "" for the first parameter, this **must** be changed to your respective bucket name.
+  - Similar issues with S3ServiceTest.java as above.
+  - The AWS S3 upload and download service (S3FileService) makes the assumption that you have the credentials for AWS S3 in the local system.
+    * For Windows, it should be located at C:\Users\(username)\.aws\credentials
+	* For Linux, it should be located at ~/.aws/credentials
+
+For future iterations it may be a good idea to configure S3FileService on line 25 (as of this writing) to instead grab credentials from environment variables.  You could even try to have it check for one and if it fails, have it try the other.
+	

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.forge.PDFGenerationService.service.S3FileService;
 
@@ -11,7 +12,8 @@ public class S3ServiceTest {
 
 	private S3FileService s3Serv = new S3FileService();
 	private byte[] content = {'I', ' ', 'a','m',' ','f','o','r',' ','u','n','i','t',' ','t','e','s','t','i','n','g',' ','o','n','l','y','.'};
-	private String bucket="catcssp2imgbucket";
+	private String bucket="";// PLEASE CONFIGURE WITH YOUR OWN BUCKET NAME.
+	//ENSURE THAT LOCAL ENVIRONMENT HAS THE CREDENTIALS STORED IN ITS RESPECTIVE /HOME/.AWS FOLDER
 	private String username="unittestuser";
 	private int id=1;
 	@Disabled
